@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "558284732124",
+    "firebase_url": "https://dataset-f70c4.firebaseio.com",
+    "project_id": "dataset-f70c4",
+    "storage_bucket": "dataset-f70c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558284732124:android:d093e068713bde70",
+        "android_client_info": {
+          "package_name": "com.example.dotoan.musicrecommendation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558284732124-f2i9icpi7a9t807rq5rp50v6akqubi9k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dotoan.musicrecommendation",
+            "certificate_hash": "1692901ebf603c94b36745db0ef9968270d02d83"
+          }
+        },
+        {
+          "client_id": "558284732124-lstt5s0s5p0cdl0ss1kfnhib8jplnvl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcGqr7j46A1bQb_SMzB8WXWTq_bufjpTs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558284732124-lstt5s0s5p0cdl0ss1kfnhib8jplnvl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558284732124:android:310065201153b8a5",
+        "android_client_info": {
+          "package_name": "com.codelab.ititiu13083.musicrecommendation_core"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558284732124-hbpe7vhubco6l5n2b1apk06gchkkek67.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codelab.ititiu13083.musicrecommendation_core",
+            "certificate_hash": "9f6f8cbcea73f43391469c2e25e9d2f6e8710a38"
+          }
+        },
+        {
+          "client_id": "558284732124-lstt5s0s5p0cdl0ss1kfnhib8jplnvl2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBcGqr7j46A1bQb_SMzB8WXWTq_bufjpTs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558284732124-lstt5s0s5p0cdl0ss1kfnhib8jplnvl2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

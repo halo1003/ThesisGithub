@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MReco</string>
+    <string name="titleSignup">Create a new account</string>
+    <string name="titleSignin">Sign in to your account</string>
+    <string name="mb_login">LOGIN</string>
+    <string name="mb_signup">SIGN UP</string>
+    <string name="strSuccess">Success: Wellcome </string>
+    <string name="TAG">DT_TAG</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+</resources>

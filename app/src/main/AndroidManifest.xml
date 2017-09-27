@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dotoan.musicrecommendation">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ic"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppThemeNoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SignUpActivity"
+            android:label="@string/titleSignup"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".IntroActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/titleSignup"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme" />
+
+        <receiver
+            android:name=".broadcast.ReceiverLogin"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="dotoan.com" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".services.UpdateService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity
+            android:name=".MainPage.NavigationActivity"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <service
+            android:name=".services.Cuckoo_select"
+            android:enabled="true"
+            android:exported="true"></service>
+    </application>
+
+</manifest>

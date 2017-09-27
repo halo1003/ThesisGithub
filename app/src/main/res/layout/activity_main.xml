@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.dotoan.musicrecommendation.MainActivity"
+    android:background="@color/colorDark">
+
+    <TextView
+        android:paddingTop="10dp"
+        android:id="@+id/updateText"
+        android:textColor="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_appicon"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp" />
+
+    <LinearLayout
+        android:id="@+id/lilaspinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
+        <ProgressBar
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/processText"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout"
+        android:orientation="vertical"
+        android:paddingTop="30dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:paddingBottom="100dp">
+
+        <Button
+            android:id="@+id/signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ovalbutton"
+            android:text="Sign Up"
+            android:textStyle="bold"
+            android:textColor="@color/colorOrange"
+            android:layout_margin="5dp"/>
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ovalbutton_withbackground"
+            android:text="Login"
+            android:textStyle="bold"
+            android:textColor="@color/colorDark"
+            android:layout_margin="5dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Created by Do Song Toan"
+        android:textColor="@color/colorWhitev2"
+        android:gravity="center"
+        android:textSize="10dp"
+        android:layout_alignParentBottom="true"
+        android:paddingBottom="10dp"/>
+</RelativeLayout>

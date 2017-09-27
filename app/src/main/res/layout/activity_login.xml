@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDark">
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/LL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_appicon"
+                android:layout_marginBottom="100dp"/>
+
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edt_with_icon"
+                android:inputType="textEmailAddress"
+                android:drawableLeft="@drawable/ic_mail"
+                android:drawablePadding="20dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="12dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:hint="Email"
+                android:textSize="15dp"
+                android:layout_margin="5dp"
+                android:backgroundTint="@color/colorDarkv2"
+                />
+
+            <EditText
+                android:backgroundTint="@color/colorDarkv2"
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edt_with_icon"
+                android:inputType="textEmailAddress"
+                android:drawableLeft="@drawable/ic_pass"
+                android:drawablePadding="20dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="12dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:hint="Password"
+                android:textSize="15dp"
+                android:layout_margin="5dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textAlignment="textEnd"
+                android:text="Forgot Password?"
+                android:layout_margin="10dp"
+                android:textColor="@color/colorWhite"/>
+
+            <com.dd.morphingbutton.MorphingButton
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:text="Login"/>
+
+            <TextView
+                android:id="@+id/txtvError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Error"
+                android:visibility="invisible"
+                android:textColor="@color/colorGoogleTouched"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtvError"
+                android:gravity="center"
+                android:padding="10dp">
+
+                <ImageView
+                    android:id="@+id/t1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/line"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="10dp"/>
+
+                <TextView
+                    android:id="@+id/t2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="OR CONNECT WITH"
+                    android:layout_alignParentTop="true"
+                    android:layout_toRightOf="@+id/t1"
+                    android:layout_toEndOf="@+id/t1"
+                    android:textStyle="bold"
+                    android:textSize="10dp"
+                    android:textColor="@color/colorWhite"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/line"
+                    android:layout_toRightOf="@+id/t2"
+                    android:layout_toEndOf="@+id/t2"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"/>
+
+            </RelativeLayout>
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/sign_in_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="0dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login form"
+        android:textSize="10dp"
+        android:textColor="@color/colorWhite"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:padding="10dp"/>
+</RelativeLayout>
+

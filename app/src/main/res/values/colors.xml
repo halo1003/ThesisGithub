@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorWhitev2">#ffffff</color>
+    <color name="colorGoogle">#cf4332</color>
+    <color name="colorGoogleTouched">#862b21</color>
+    <color name="colorOrange">#f65952</color>
+    <color name="colorSilver">#f1e9e6</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorDark">#2e3237</color>
+    <color name="colorDarkv2">#3b4148</color>
+    <color name="colorGreen">#12b400</color>
+    <color name="colorPink">#ea4c88</color>
+    <color name="colorPinkv2">#c74174</color>
+    <color name="colorWhite">#ffffff</color>
+</resources>

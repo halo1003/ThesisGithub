@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <EditText
+        android:backgroundTint="@color/colorDarkv2"
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edt_with_icon"
+        android:inputType="textEmailAddress"
+        android:drawableLeft="@drawable/ic_mail"
+        android:drawablePadding="20dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:hint="Email"
+        android:textSize="15dp"
+        android:layout_margin="5dp"
+        />
+
+    <EditText
+        android:backgroundTint="@color/colorDarkv2"
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/edt_with_icon"
+        android:inputType="textEmailAddress"
+        android:drawableLeft="@drawable/ic_pass"
+        android:drawablePadding="20dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:hint="Password"
+        android:textSize="15dp"
+        android:layout_margin="5dp"
+        />
+</LinearLayout>

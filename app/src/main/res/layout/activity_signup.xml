@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorDark">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/LL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="25dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/ic_appicon"
+                    android:layout_marginBottom="100dp"/>
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewpage"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+                </android.support.v4.view.ViewPager>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textAlignment="textEnd"
+                    android:text=""
+                    android:layout_margin="10dp"/>
+
+                <com.dd.morphingbutton.MorphingButton
+                    android:id="@+id/submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center_horizontal"
+                    android:text="Login" />
+
+                <TextView
+                    android:id="@+id/txtvError"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Error"
+                    android:visibility="invisible"
+                    android:textColor="@color/colorGoogleTouched"/>
+            </LinearLayout>
+        </ScrollView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sign up form"
+            android:textColor="@color/colorWhite"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:textSize="10dp"
+            android:paddingBottom="10dp"/>
+</RelativeLayout>
