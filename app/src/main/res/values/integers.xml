@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="cluster">25</integer>
+    <integer name="nMusic">13369</integer>
+    <integer name="nUdata">1259</integer>
+</resources>

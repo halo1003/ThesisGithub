@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.dotoan.musicrecommendation.R;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,8 +24,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 
 public class CentroidCreate extends Service {
-    int n = 7;
-    int nMusic = 13369;
+    int n = 25;
+    int nMusic =  13369;
     int nUser = 1259;
 
     FirebaseDatabase db = FirebaseDatabase.getInstance();

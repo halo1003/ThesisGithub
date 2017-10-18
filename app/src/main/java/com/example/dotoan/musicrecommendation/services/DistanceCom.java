@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 
+import com.example.dotoan.musicrecommendation.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,9 +13,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class DistanceCom extends Service {
-    int n = 7;
-    int nMusic = 13369;
-    int nUser = 1259;
+    int n = getResources().getInteger(R.integer.cluster);
+    int nMusic =  getResources().getInteger(R.integer.nMusic);
+    int nUser = getResources().getInteger(R.integer.nUdata);
 
     public DistanceCom() {
     }

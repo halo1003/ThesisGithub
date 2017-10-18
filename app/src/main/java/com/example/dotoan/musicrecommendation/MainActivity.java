@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.dotoan.musicrecommendation.MainPage.NavigationActivity;
 import com.example.dotoan.musicrecommendation.services.CentroidCreate;
 import com.example.dotoan.musicrecommendation.services.DistanceCom;
+import com.example.dotoan.musicrecommendation.services.FirebaseEventListener;
 import com.example.dotoan.musicrecommendation.services.UpdateService;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -43,6 +44,9 @@ import com.jaredrummler.android.device.DeviceName;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.processText) TextView txtv;
     @BindView(R.id.updateText) TextView txtvUpdate;
 
-    int n = 7;
+    int n = 25;
     int nMusic = 13369;
     int nUser = 1259;
 
@@ -209,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Log.e("onStart","run");
+        Log.e("MainActivity","run");
         txtvUpdate.setVisibility(View.INVISIBLE);
         PermissionListener permissionlistener = new PermissionListener() {
             @Override
@@ -245,56 +249,35 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void hacking(){
-
+        Intent listen = new Intent(MainActivity.this, FirebaseEventListener.class);
+        startService(listen);
 
         final DatabaseReference data = FirebaseDatabase.getInstance().getReference("app");
-        databaseReference.child("Kmean").child("centroid").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                Log.i("System.out","Add "+dataSnapshot.getKey()+" to data after "+ s);
-                data.child("control").setValue(1);
-            }
+        data.child("controlv2").setValue(false);
 
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
         data.child("control").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 int c = Integer.parseInt(dataSnapshot.getValue().toString());
                 switch (c){
                     case 0:
-
+                        Log.e("switch",0+"");
                         Intent Centroid_i = new Intent(getApplicationContext(), CentroidCreate.class);
                         startService(Centroid_i);
+
                         break;
                     case 1:
-//                        Intent DistanceCom_i = new Intent(getApplicationContext(), DistanceCom.class);
-//                        startService(DistanceCom_i);
+                        Log.e("switch",1+"");
                         Intent i = new Intent(getApplicationContext(), CentroidCreate.class);
                         stopService(i);
-                        Intent intent = getIntent();
-                        finish();
-                        startActivity(intent);
+
+                        DatabaseReference d2 = FirebaseDatabase.getInstance().getReference();
+                        d2.child("app").child("control").setValue(2);
 
                         new DistanceComputeAsyn().execute();
+                        break;
+                    case 2:
+                        Log.e("switch",2+"");
                         break;
                     default:
                         break;
@@ -307,6 +290,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        data.child("controlv2").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue().toString().equals("true")){
+                    data.child("control").setValue(1);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         final String device = DeviceName.getDeviceName();
         DeviceName.with(getApplicationContext()).request(new DeviceName.Callback() {
@@ -362,10 +358,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public class DistanceComputeAsyn extends AsyncTask<String,Integer,String>{
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            Log.e("DistanceComputeAsyn","DONE");
+        }
 
         @Override
         protected String doInBackground(String... params) {
-            Log.i("Distance","Running");
+            Log.i("DistanceComputeAsyn","Running");
             final DatabaseReference database = FirebaseDatabase.getInstance().getReference();
             database.addListenerForSingleValueEvent(new ValueEventListener() {
                 int cenPos[];
@@ -408,7 +414,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.i("System.out","Similarity of user " + zone.getKey() +" with user "+zone1.getKey()+" equal "+ String.valueOf(sim));
                             }
                         }
-                        Log.e("END",simCombine[x].length+ " ------------------------------------------------------------------");
+                        Log.e("ENDLOOP",x+" : " +simCombine[x].length+ " ------------------------------------------------------------------");
                         x++;
                     }
                     groupCen(simCombine);
@@ -420,6 +426,36 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             return null;
+        }
+
+        private int[][] Matrix(){
+            final int m[][] = new int[nUser][nMusic];
+            DatabaseReference database = FirebaseDatabase.getInstance().getReference("habitatMatrix");
+            database.addListenerForSingleValueEvent(new ValueEventListener() {
+                int i =0;
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot zone: dataSnapshot.getChildren()){
+                        int row = Integer.parseInt(zone.getKey().toString());
+                        for (DataSnapshot zonedetail: zone.getChildren()){
+                            int column = Integer.parseInt(zonedetail.getKey().toString());
+                            int value = Integer.parseInt(zonedetail.getValue().toString());
+                            for (int j = i; j<column; j++){
+                                m[row][j] = 0;
+                            }
+                            m[row][column] = value;
+                            Log.i("Matrix","m["+row+"]["+column+"] = "+value);
+                            i = column+1;
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            return m;
         }
 
         private float similarityDistance(int centVal[],int centPos[], int objVal[],int objPos[]){
@@ -452,25 +488,83 @@ public class MainActivity extends AppCompatActivity {
             Log.e("groupCen","Running...");
             final int combine[][] = new int [n][nUser];
             float checkm[];
-            for (int i =0; i < n;i++ ){
-                for (int j =0; j<nUser; j++){
+            for (int i =0; i < n;i++ ) {
+                for (int j = 0; j < nUser; j++) {
                     combine[i][j] = 0;
                 }
             }
 
+            Log.e("SYS","--------------------------------------------------");
+            Log.e("SYS","m[0].length:"+m[0].length+" n:"+n);
+            Log.e("SYS","--------------------------------------------------");
+
             for (int i =0 ; i< m[0].length;i++){
                 checkm = new float[n];
+                List<Float> a = new ArrayList<Float>();
                 for (int j =0; j< n; j++){
                     checkm[j] = m[j][i];
+                    a.add(m[j][i]);
                 }
                 combine[smallestVal(checkm)][i] = 1;
+                Log.e("a",a+"");
                 Log.i("System.out","combine["+smallestVal(checkm)+"]["+i+"])");
             }
+            Log.e("Balance: ",balance(combine)+"");
 
-            Log.d("balance: ",balance(combine)+"");
+            if (!balance(combine)) {
+                databaseReference.child("Kmean").child("centroid").removeValue();
+                for (int i =0; i<n;i++) {
+                    final List<Integer> sumMatrix = new ArrayList<Integer>();
+                    for (int j = 0; j < nUser; j++){
+                        if (combine[i][j] == 1){
+                            sumMatrix.add(j);
+                        }
+                    }
+                    Log.e("sumMatrix",i+": "+sumMatrix+"");
 
-            //DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("app");
-            //databaseReference.child("control").child("balance").setValue(balance(combine));
+                    if (sumMatrix.size()>1){
+//                        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+//                        final int finalI1 = i;
+//                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(DataSnapshot dataSnapshot) {
+//                                for (int j : sumMatrix){
+//                                    for (DataSnapshot zone: dataSnapshot.child("habitatMatrix").child(String.valueOf(j)).getChildren()){
+//                                        databaseReference.child("Kmean").child("centroid").child(String.valueOf(finalI1)).child(zone.getKey()).setValue(zone.getValue());
+//                                        Log.i("System.out",finalI1+" / "+zone.getKey()+" / "+zone.getValue());
+//                                    }
+//                                }
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(DatabaseError databaseError) {
+//
+//                            }
+//                        });
+                        int habitat[][] = new int [nUser][nMusic];
+                        habitat = Matrix();
+                    }else {
+                        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                        final int finalI1 = i;
+                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    for (int j : sumMatrix){
+                                        for (DataSnapshot zone: dataSnapshot.child("habitatMatrix").child(String.valueOf(j)).getChildren()){
+                                            databaseReference.child("Kmean").child("centroid").child(String.valueOf(finalI1)).child(zone.getKey()).setValue(zone.getValue());
+                                            Log.i("System.out",finalI1+" / "+zone.getKey()+" / "+zone.getValue());
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                    }
+                }
+            }
         }
 
         private boolean balance(int m[][]){
@@ -481,6 +575,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int j = 0;j < nUser;j++){
                     sum += m[i][j];
                 }
+                Log.d("Balance number",i+" -> "+sum);
                 temp[i]= sum;
             }
 
@@ -508,7 +603,7 @@ public class MainActivity extends AppCompatActivity {
             float sma = m[0];
             int pos =0;
             for (int i =1;i<m.length;i++){
-                if (sma < m[i]) {
+                if (sma > m[i]) {
                     sma = m[i];
                     pos = i;
                 }
